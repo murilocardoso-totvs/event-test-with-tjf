@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.totvs.tjf</groupId>
+		<artifactId>tjf-boot-starter</artifactId>
+		<version>1.15.3-RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<groupId>com.mcc</groupId>
+	<artifactId>event-test-with-tjf</artifactId>
+	<version>1.0.0-RELEASE</version>
+
+	<packaging>jar</packaging>
+
+	<name>event-test-with-tjf</name>
+	<description>Demo project for Spring Boot</description>
+	
+	<repositories>
+
+		<repository>
+			<id>central-release</id>
+			<name>TOTVS Java Framework: Release</name>
+			<url>http://maven.engpro.totvs.com.br/artifactory/libs-release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>central-snapshot</id>
+			<name>TOTVS Java Framework: Snapshots</name>
+			<url>http://maven.engpro.totvs.com.br/artifactory/libs-snapshot</url>
+		</repository>
+
+	</repositories>
+	
+
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- TJF -->
+		<dependency>
+			<groupId>com.totvs.tjf</groupId>
+			<artifactId>tjf-api-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.totvs.tjf</groupId>
+			<artifactId>tjf-core-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.totvs.tjf</groupId>
+			<artifactId>tjf-api-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.totvs.tjf</groupId>
+			<artifactId>tjf-messaging-stream</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.totvs.tjf</groupId>
+			<artifactId>tjf-repository-aggregate</artifactId>
+		</dependency>
+		
+		<dependency>
+  			<groupId>com.totvs.tjf</groupId>
+  			<artifactId>tjf-migration-schema</artifactId>
+		</dependency>
+		
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Micrometer -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
+		<!-- External -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin.external.google</groupId>
+					<artifactId>android-json</artifactId>
+				</exclusion>
+                	</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/br.com.caelum.stella/caelum-stella-bean-validation -->
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-bean-validation</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit4</artifactId>
+			<version>0.11.0</version>
+			<scope>test</scope>
+		</dependency>		
+	</dependencies>
+	
+	<build>
+		<plugins>			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

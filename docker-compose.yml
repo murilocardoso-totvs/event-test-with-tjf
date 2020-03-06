@@ -1,0 +1,36 @@
+version: '3'
+
+volumes:
+
+  local-pg-data: {}
+  local-rabbitmq-data: {}
+
+services:
+
+  my-postgres:
+    image: docker.totvs.io/sl_wms/totvs-sl-postgres #sameersbn/postgresql:10-1
+    restart: always
+    command: postgres -c 'max_connections=2000'
+    environment:
+      DB_NAME: my-wms
+      PG_PASSWORD: totvs@123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./local-pg-data:/var/lib/postgresql
+
+  my-pg-admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: my-wms@totvs.com.br
+      PGADMIN_DEFAULT_PASSWORD: totvs@123
+    ports:
+      - 8080:80
+ 
+  my-rabbitmq:
+    image: rabbitmq:3.7.7-management
+    volumes:
+      - ./local-rabbitmq-data:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
