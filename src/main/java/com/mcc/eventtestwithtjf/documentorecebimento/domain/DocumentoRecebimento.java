@@ -20,29 +20,29 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Aggregate
 public class DocumentoRecebimento extends AggregateRoot {
-	
+
 	@Include
 	@AggregateIdentifier
 	private DocumentoRecebimentoId id;
 	private String identificador;
 	private List<DocumentoRecebimentoItem> itens = new ArrayList<>();
 	private Situacao situacaoAtual;
-	
+
 	@Builder
-	private DocumentoRecebimento(DocumentoRecebimentoId id, 
+	private DocumentoRecebimento(DocumentoRecebimentoId id,
 	                             String identificador,
 	                             List<DocumentoRecebimentoItem> itens) {
 		this.id = id;
 		this.identificador = identificador;
 		this.itens.addAll(itens);
 		this.situacaoAtual = Situacao.DISPONIVEL;
-		
+
 		this.registerEvent(DocumentoRecebimentoCadastradoEvent.from(this));
-	} 
-	
+	}
+
 	public void associado() {
 		this.situacaoAtual = Situacao.ASSOCIADO;
-		
+
 		this.registerEvent(DocumentoRecebimentoAssociadoProcessoRecebimentoEvent.from(this));
 	}
 }

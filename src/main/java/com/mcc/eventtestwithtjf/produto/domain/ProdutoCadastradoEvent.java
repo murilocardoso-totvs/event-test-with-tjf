@@ -11,7 +11,7 @@ import lombok.Getter;
 public final class ProdutoCadastradoEvent implements DomainEvent {
 	private final String id;
 	private final String nome;
-	
+
 	public static ProdutoCadastradoEvent from(Produto produto) {
 		return new ProdutoCadastradoEvent(produto.getId().toString(), produto.getNome());
 	}

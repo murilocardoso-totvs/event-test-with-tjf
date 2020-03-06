@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class MyWMSChannel {
-	
-	public static final String WMS = "my-wms-exchange";	
-	
+
+	public static final String WMS = "my-wms-exchange";
+
 	public interface WMSExchange {
 		@Output(MyWMSChannel.WMS)
 		MessageChannel output();
-	}	
+	}
 }

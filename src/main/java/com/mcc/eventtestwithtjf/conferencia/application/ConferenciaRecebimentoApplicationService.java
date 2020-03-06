@@ -20,22 +20,22 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Transactional
 public class ConferenciaRecebimentoApplicationService {
-	
+
 	private final DocumentoRecebimentoRepository documentoRecebimentoRepository;
 	private final ApplicationEventPublisher publisher;
-	
+
 	@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
 	public void on(ProcessoRecebimentoCriadoEvent event) {
-		
+
 		log.info("-- Begin ConferenciaRecebimentoApplicationService --");
-		
+
 		event.getDocumentos().forEach(processoRecebimentoDocumento -> {
 			var documentoRecebimento = documentoRecebimentoRepository.findById(DocumentoRecebimentoId.from(processoRecebimentoDocumento.getId()))
-										  							 .orElseThrow();
-			
+			                                                         .orElseThrow();
+
 			publisher.publishEvent(CriarConferenciaCmd.from(documentoRecebimento));
 		});
-		
+
 		log.info("-- End ConferenciaRecebimentoApplicationService --");
 	}
 }

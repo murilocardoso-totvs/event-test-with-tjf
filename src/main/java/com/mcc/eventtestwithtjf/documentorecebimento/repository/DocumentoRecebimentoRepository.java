@@ -17,7 +17,8 @@ import com.totvs.tjf.repository.aggregate.CrudAggregateRepository;
 
 @Repository
 @Transactional
-public class DocumentoRecebimentoRepository extends CrudAggregateRepository<DocumentoRecebimento, DocumentoRecebimentoId>
+public class DocumentoRecebimentoRepository
+        extends CrudAggregateRepository<DocumentoRecebimento, DocumentoRecebimentoId>
         implements DocumentoRecebimentoDomainRepository {
 
 	public DocumentoRecebimentoRepository(EntityManager em, ObjectMapper mapper) {
@@ -28,7 +29,7 @@ public class DocumentoRecebimentoRepository extends CrudAggregateRepository<Docu
 	public String getTableName() {
 		return "tbl_documento_recebimento";
 	}
-	
+
 	@Override
 	public Optional<DocumentoRecebimento> findById(DocumentoRecebimentoId id) {
 		return this.findOne("id = ?", new SqlParameterValue(Types.VARCHAR, id.toString()));

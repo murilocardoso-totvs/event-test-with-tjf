@@ -20,14 +20,12 @@ public class DocumentoRecebimentoItem {
 	private DocumentoRecebimentoItemId id;
 	private ProdutoId produtoId;
 	private BigDecimal quantidade;
-	
+
 	@Builder
-	private DocumentoRecebimentoItem(DocumentoRecebimentoItemId id,
-	                                 ProdutoId produtoId,
-	                                 BigDecimal quantidade) {
+	private DocumentoRecebimentoItem(DocumentoRecebimentoItemId id, ProdutoId produtoId, BigDecimal quantidade) {
 		this.id = id;
 		this.produtoId = produtoId;
 		this.quantidade = quantidade;
 	}
-	
+
 }

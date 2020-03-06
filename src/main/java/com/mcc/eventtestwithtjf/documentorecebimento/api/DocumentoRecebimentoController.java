@@ -26,23 +26,23 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class DocumentoRecebimentoController {
 	public static final String PATH = "/api/v1/documentosRecebimento";
-	
+
 	private final DocumentoRecebimentoApplicationService service;
 
 	@PostMapping
 	public ResponseEntity<Void> cadastrar(@RequestBody DocumentoRecebimentoDTO dto) {
-		
+
 		var cmd = CadastrarDocumentoRecebimentoCommand.builder()
-										 	   		  .identificador(dto.getIdentificador())
-										 	   		  .itens(dto.getItens().stream()
-										 	   		         			   .map( itemDTO -> 
-										 	   		         				   		CadastrarDocumentoRecebimentoItemCommand.builder()
-										 	   			                                   		  							.produtoId(ProdutoId.from(itemDTO.getProdutoId()))
-										 	   			                                   		  							.quantidade(itemDTO.getQuantidade())
-										 	   			                                   		  							.build())
-										 	   		         			   .collect(toList()))                                  
-										 	   		  .build();
-		
+		                                              .identificador(dto.getIdentificador())
+		                                              .itens(dto.getItens()
+		                                                        .stream()
+		                                                        .map(itemDTO -> CadastrarDocumentoRecebimentoItemCommand.builder()
+		                                                                                                                .produtoId(ProdutoId.from(itemDTO.getProdutoId()))
+		                                                                                                                .quantidade(itemDTO.getQuantidade())
+		                                                                                                                .build())
+		                                                        .collect(toList()))
+		                                              .build();
+
 		var id = service.handle(cmd);
 
 		var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/").path(id.toString()).build().toUri();

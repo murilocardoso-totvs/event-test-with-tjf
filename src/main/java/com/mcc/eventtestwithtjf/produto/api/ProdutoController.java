@@ -26,17 +26,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ProdutoController {
 	public static final String PATH = "/api/v1/produtos";
-	
+
 	private final ProdutoApplicationService service;
 
 	@PostMapping
 	public ResponseEntity<Void> cadastrar(@RequestBody CadastrarProdutoDTO dto) {
-		
-		var cmd = CadastrarProdutoCommand.builder()
-										 .id(ProdutoId.generate())
-										 .nome(dto.getNome())
-										 .build();
-		
+
+		var cmd = CadastrarProdutoCommand.builder().id(ProdutoId.generate()).nome(dto.getNome()).build();
+
 		var id = service.handle(cmd);
 
 		var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/").path(id.toString()).build().toUri();

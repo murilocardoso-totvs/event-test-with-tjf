@@ -13,15 +13,14 @@ import com.totvs.tjf.repository.aggregate.CrudAggregateRepository;
 
 @Repository
 @Transactional
-public class ProdutoRepository extends CrudAggregateRepository<Produto, ProdutoId> 
-	implements ProdutoDomainRepository {
-	
+public class ProdutoRepository extends CrudAggregateRepository<Produto, ProdutoId> implements ProdutoDomainRepository {
+
 	public ProdutoRepository(EntityManager em, ObjectMapper mapper) {
 		super(em, mapper.copy());
 	}
-	
+
 	@Override
 	public String getTableName() {
 		return "tbl_produto";
-	}	
+	}
 }

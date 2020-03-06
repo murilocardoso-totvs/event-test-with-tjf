@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public final class CriarProcessoRecebimentoDTO {
 	private final String descricao;
 	private final List<CriarProcessoRecebimentoDocumentoDTO> documentos;
-	
+
 	@Getter
 	@Builder
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -23,5 +23,5 @@ public final class CriarProcessoRecebimentoDTO {
 	public static class CriarProcessoRecebimentoDocumentoDTO {
 		private final String id;
 	}
-	
+
 }

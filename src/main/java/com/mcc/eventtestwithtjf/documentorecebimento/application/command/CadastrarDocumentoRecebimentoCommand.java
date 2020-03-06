@@ -18,7 +18,7 @@ import lombok.Getter;
 public final class CadastrarDocumentoRecebimentoCommand {
 	private final String identificador;
 	private final List<CadastrarDocumentoRecebimentoItemCommand> itens;
-	
+
 	@Getter
 	@EqualsAndHashCode
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -26,5 +26,5 @@ public final class CadastrarDocumentoRecebimentoCommand {
 	public static class CadastrarDocumentoRecebimentoItemCommand {
 		private final ProdutoId produtoId;
 		private final BigDecimal quantidade;
-	}	
+	}
 }

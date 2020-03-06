@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProdutoId implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Getter
 	private UUID id;
 

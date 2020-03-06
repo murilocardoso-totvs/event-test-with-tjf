@@ -16,17 +16,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Aggregate
 public class Produto extends AggregateRoot {
-	
+
 	@Include
 	@AggregateIdentifier
 	private final ProdutoId id;
 	private String nome;
-	
+
 	@Builder
 	private Produto(ProdutoId id, String nome) {
 		this.id = id;
 		this.nome = nome;
-		
+
 		this.registerEvent(ProdutoCadastradoEvent.from(this));
 	}
 }

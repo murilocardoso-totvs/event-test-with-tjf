@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public final class DocumentoRecebimentoDTO {
 	private final String identificador;
 	private final List<DocumentoRecebimentoItemDTO> itens;
-		
+
 	@Getter
 	@Builder
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)

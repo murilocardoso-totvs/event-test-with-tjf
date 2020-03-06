@@ -33,7 +33,7 @@ public class ProcessoRecebimentoApplicationService {
 		                                                                                                                   .toString()))
 		                                                            .collect(Collectors.toList()))
 		                                             .build();
-		
+
 		processoRecebimentoRepository.insert(processoRecebimento);
 
 		processoRecebimento.getEvents().forEach(publisher::publishEvent);

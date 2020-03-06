@@ -27,23 +27,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ProcessoRecebimentoController {
 	public static final String PATH = "/api/v1/processosRecebimento";
-	
+
 	private final ProcessoRecebimentoApplicationService service;
-	
 
 	@PostMapping
 	public ResponseEntity<Void> criar(@RequestBody CriarProcessoRecebimentoDTO dto) {
-		
+
 		var cmd = CriarProcessoRecebimentoCommand.builder()
-										 	   	 .descricao(dto.getDescricao())
-										 	   	 .documentos(dto.getDocumentos().stream()
-										 	   	                                .map( documento -> 
-											 	   	                                	CriarProcessoRecebimentoDocumentoCommand.builder()
-											 	   	                                                                        	.id(DocumentoRecebimentoId.from(documento.getId()))
-											 	   	                                                                        	.build())
-										 	   	                                .collect(Collectors.toList()))
-										 	   	 .build();
-		
+		                                         .descricao(dto.getDescricao())
+		                                         .documentos(dto.getDocumentos()
+		                                                        .stream()
+		                                                        .map(documento -> CriarProcessoRecebimentoDocumentoCommand.builder()
+		                                                                                                                  .id(DocumentoRecebimentoId.from(documento.getId()))
+		                                                                                                                  .build())
+		                                                        .collect(Collectors.toList()))
+		                                         .build();
+
 		var id = service.handle(cmd);
 
 		var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/").path(id.toString()).build().toUri();

@@ -20,21 +20,19 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Aggregate
 public class ProcessoRecebimento extends AggregateRoot {
-	
+
 	@Include
 	@AggregateIdentifier
 	private ProcessoRecebimentoId id;
 	private String descricao;
 	private List<DocumentoRecebimentoId> documentos = new ArrayList<>();
-	
+
 	@Builder
-	private ProcessoRecebimento(ProcessoRecebimentoId id,
-	                            String descricao,
-	                            List<DocumentoRecebimentoId> documentos) {
+	private ProcessoRecebimento(ProcessoRecebimentoId id, String descricao, List<DocumentoRecebimentoId> documentos) {
 		this.id = id;
 		this.descricao = descricao;
 		this.documentos.addAll(documentos);
-		
+
 		this.registerEvent(ProcessoRecebimentoCriadoEvent.from(this));
 	}
 }

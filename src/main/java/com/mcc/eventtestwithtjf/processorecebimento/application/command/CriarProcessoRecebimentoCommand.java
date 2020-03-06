@@ -17,7 +17,7 @@ import lombok.Getter;
 public final class CriarProcessoRecebimentoCommand {
 	private final String descricao;
 	private final List<CriarProcessoRecebimentoDocumentoCommand> documentos;
-	
+
 	@Getter
 	@EqualsAndHashCode
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)

@@ -18,18 +18,15 @@ import lombok.AllArgsConstructor;
 public class ProdutoApplicationService {
 	private final ProdutoDomainRepository repository;
 	private final ApplicationEventPublisher publisher;
-	
+
 	public ProdutoId handle(CadastrarProdutoCommand cmd) {
-		
-		var produto = Produto.builder()
-				             .id(cmd.getId())
-				             .nome(cmd.getNome())
-				             .build();
-		
+
+		var produto = Produto.builder().id(cmd.getId()).nome(cmd.getNome()).build();
+
 		repository.insert(produto);
-		
+
 		produto.getEvents().forEach(publisher::publishEvent);
-		
+
 		return produto.getId();
 	}
 }
